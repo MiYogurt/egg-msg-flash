@@ -1,4 +1,4 @@
-const assert = require('power-assert')
+const assert = require('assert')
 
 module.exports = app => {
     const index = app.config.coreMiddleware.indexOf('session')
