@@ -8,12 +8,10 @@ module.exports = app => {
         ctx.flash_error({
             ss: 'some error'
         })
-        ctx.redirect('/session2')
+        ctx.body = ctx.session.flash
+
     })
-    router.get('/session2', async (ctx, next) => {
-        ctx.type = 'json'
-        ctx.body = ctx.flash
-    })
+
     router.get('/session3', async (ctx, next) => {
         ctx.flash = {
             type: 'warning',
@@ -28,10 +26,7 @@ module.exports = app => {
                 name: 'required'
             }
         })
-        ctx.redirect('/session4')
+        ctx.body = ctx.session.flash
     })
-    router.get('/session4', async (ctx, next) => {
-        ctx.type = 'json'
-        ctx.body = ctx.flash
-    })
+
 }

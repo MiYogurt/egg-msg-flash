@@ -23,38 +23,34 @@ describe('test/msg-flash.test.js', () => {
   })
 
   it('should GET /session1', () => {
-    app
+    const obj = {
+      type: 'error',
+      message: { ss: 'some error' }
+    }
+
+    return app
       .httpRequest()
       .get('/session1')
-      .expect(302)
-    app
-      .httpRequest()
-      .get('/session2')
       .expect(
-        JSON.stringify({
-          type: 'error',
-          message: { ss: 'some error' }
-        })
+        JSON.stringify(obj)
       )
   })
 
   it('should GET /session3', () => {
-    app
+    const obj = {
+      type: 'warning',
+      message: {
+        field: {
+          name: 'required'
+        }
+      }
+    }
+
+    return app
       .httpRequest()
       .get('/session3')
-      .expect(302)
-    app
-      .httpRequest()
-      .get('/session4')
       .expect(
-        JSON.stringify({
-          type: 'warning',
-          message: {
-            field: {
-              name: 'required'
-            }
-          }
-        })
+        JSON.stringify(obj)
       )
   })
 })
